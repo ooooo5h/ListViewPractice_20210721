@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.eunhyung.listviewpractice_20210721.adapters.StudentAdapter
 import com.eunhyung.listviewpractice_20210721.datas.Student
+import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +28,10 @@ class MainActivity : AppCompatActivity() {
 
 //        미뤄뒀던 Adapter의 대입을 진행하자
         mAdapter = StudentAdapter(this, R.layout.student_list_item, mStudentList)
+
+
+//        완성된 어댑터 변수를 리스트뷰와 연결
+        studentListView.adapter = mAdapter
 
     }
 }
