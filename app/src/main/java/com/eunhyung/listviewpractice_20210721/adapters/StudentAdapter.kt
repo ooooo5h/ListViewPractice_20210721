@@ -30,6 +30,12 @@ class StudentAdapter(
 //            tempRow내부가 비어있는 상황!! => 채워주자
             tempRow = inflater.inflate(R.layout.student_list_item, null)
         }
+        
+//        tempRow는 절대 null이 아니니, 무조건 결과로 나가도 된다
+        val row = tempRow!!
+        
+//        완성된 row가 화면에 뿌려질 결과로 선정
+        return row
     }
 
 }
