@@ -1,8 +1,10 @@
 package com.eunhyung.listviewpractice_20210721
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.eunhyung.listviewpractice_20210721.adapters.StudentAdapter
 import com.eunhyung.listviewpractice_20210721.datas.Student
 import kotlinx.android.synthetic.main.activity_main.*
@@ -50,11 +52,24 @@ class MainActivity : AppCompatActivity() {
 //        리스트뷰 아이템 길게 눌렀을때 별도 처리
         studentListView.setOnItemLongClickListener { parent, view, position, id ->
 
-//            롱클릭된 학생 목록에서 삭제
-            mStudentList.removeAt(position)
+//            우선 경고(확인)창을 띄우고, 확인이 눌렸을 때 삭제를 하자
+            val alert = AlertDialog.Builder(this)
+            alert.setTitle("학생 삭제")
+            alert.setMessage("설명 문구 : 정말 학생을 삭제하시겠어요?")
+            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialog, which ->
+//                확인버튼이 눌렸을 때 실행해줄 일
+//                학생삭제는 이때 진행하겠다
+                //            롱클릭된 학생 목록에서 삭제
+                mStudentList.removeAt(position)
 
 //            어댑터가 이를 확인(새로고침)하도록 notifyDataSetChanged()
-            mAdapter.notifyDataSetChanged()
+                mAdapter.notifyDataSetChanged()
+            })
+            alert.setNegativeButton("취소", null)
+
+//            실제 얼럿 띄우기
+            alert.show()
+
 
             return@setOnItemLongClickListener true
         }
