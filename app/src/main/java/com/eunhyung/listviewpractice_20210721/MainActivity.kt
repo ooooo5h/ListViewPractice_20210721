@@ -50,11 +50,15 @@ class MainActivity : AppCompatActivity() {
 //        리스트뷰 아이템 길게 눌렀을때 별도 처리
         studentListView.setOnItemLongClickListener { parent, view, position, id ->
 
-            val clickedStudent = mStudentList[position]
-            Toast.makeText(this, "${clickedStudent.name} 길게 눌림", Toast.LENGTH_SHORT).show()
+//            롱클릭된 학생 목록에서 삭제
+            mStudentList.removeAt(position)
+
+//            어댑터가 이를 확인(새로고침)하도록 notifyDataSetChanged()
+            mAdapter.notifyDataSetChanged()
 
             return@setOnItemLongClickListener true
         }
+
 
     }
 }
