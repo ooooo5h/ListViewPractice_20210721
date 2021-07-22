@@ -43,6 +43,17 @@ class MainActivity : AppCompatActivity() {
 //            클릭된 학생의 이름을 토스트로 출력해보자
             val clickedStudent = mStudentList[position]
             Toast.makeText(this, clickedStudent.name, Toast.LENGTH_SHORT).show()
+
+        }
+
+
+//        리스트뷰 아이템 길게 눌렀을때 별도 처리
+        studentListView.setOnItemLongClickListener { parent, view, position, id ->
+
+            val clickedStudent = mStudentList[position]
+            Toast.makeText(this, "${clickedStudent.name} 길게 눌림", Toast.LENGTH_SHORT).show()
+
+            return@setOnItemLongClickListener true
         }
 
     }
